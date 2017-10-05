@@ -1,14 +1,18 @@
 // pry = require("pryjs");
 // const Food = require("../lib/food");
 // const makeFoods = require("../lib/foods").makeFoods;
+// const createFoodsTable = require("../lib/foods").createFoodsTable;
 // const assert = require("chai").assert;
 //
 // describe("Foods.js tests", function(){
 //   context("makeFoods", function(){
 //     it("makes Food objects from json hash", function(){
 //       var foodObjectArray = makeFoods(foodsArray)
+//       var yogurt = foodObjectArray[1]
 //       assert.isNotObject(foodsArray[1])
 //       assert.isObject(foodObjectArray[1])
+//       assert.equal('Yogurt', yogurt.name)
+//       assert.equal(150, yogurt.calories)
 //     })
 //   });
 //   context("createFoodsTable", function(){

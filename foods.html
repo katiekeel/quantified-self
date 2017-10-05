@@ -3,9 +3,26 @@
 <head>
   <meta charset="utf-8">
   <title>Quantified Self - Manage Foods</title>
+  <link rel="stylesheet" type="text/css" href="foods.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-
+  <div class="">
+    <table class="food-table">
+      <tr>
+        <th class="food-tbl-name-col">Name</th><th class="food-tbl-cal-col">Calories</th><th class="food-tbl-delete-column"></th>
+      </tr>
+      <tr>
+        <td name="food-cell">Banana<td>
+        <td name="calorie-cell">150<td>
+        <td name="delete-cell">
+          <a href="webpack-dev-server/index.html">
+            <img src="/lib/images/delete_red.png" id="delete-food-img"/>
+          </a>
+        </td>
+      </tr>
+    </table>
+  </div>
   <script src="main.bundle.js"></script>
 </body>
 </html>

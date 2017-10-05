@@ -4,7 +4,6 @@ node_modules
 
 # Ignore Mac DS_Store
 *.DS_Store
-
 # Logs
 logs
 *.log

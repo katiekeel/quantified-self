@@ -1,30 +1,36 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>Quantified Self - Manage Foods</title>
-  <link rel="stylesheet" type="text/css" href="foods.css">
-</head>
-<body>
-  <h1>Foods!</h1>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="main.bundle.js"></script>
+  <head>
+    <meta charset="utf-8">
+    <title>Quantified Self - Manage Foods</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="foods.css">
+    <script src='lib/food.js'></script>
+    <script src='lib/foods.js'></script>
+    <script src="lib/foodAjax.js"></script>
+    <script src="lib/foodEdit.js"></script>
+  </head>
+  <body>
 
-  <h3>Add Food</h3>
-  <form id="add-foods">
-    Name:<br>
-    <input type="text" name="name"><br>
-    Calorie Amount:<br>
-    <input type="text" name="calories"><br>
-    <input type="submit" value="Add Food">
-  </form>
+    <h3>Add Food</h3>
+    <form id="add-foods">
+      Name:<br>
+      <input type="text" name="name"><br>
+      Calorie Amount:<br>
+      <input type="text" name="calories"><br>
+      <input type="submit" value="Add Food">
+    </form>
 
-  <div class="" id="food-table">
-    <table class="food-table">
-      <tr>
-        <th class="food-tbl-name-col">Name</th><th class="food-tbl-cal-col">Calories</th><th class="food-tbl-delete-column"></th>
-      </tr>
-    </table>
-  </div>
-</body>
+    <div class="">
+      <table class="food-table">
+        <tr>
+          <th class="food-tbl-name-col">Name</th>
+          <th class="food-tbl-cal-col">Calories</th>
+          <th class="food-tbl-delete-column"></th>
+        </tr>
+      </table>
+    </div>
+    <script src="main.bundle.js"></script>
+  </body>
+  <head>
 </html>

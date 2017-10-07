@@ -8,5 +8,41 @@
   height: 20px;
   width: 20px;
   margin-left: -8px;
-  margin-top: -4px; 
+  margin-top: -4px;
+}
+
+.search-foods{
+  margin-left: 10px;
+  margin-bottom: 20px;
+  border: 1px solid black;
+  width: 40%;
+}
+
+#search-foods{
+  margin: 2px;
+  margin-left: 5px;
+  padding-left: 5px;
+  width: 95%;
+}
+
+#food-table{
+  margin-left: 10px;
+  border-bottom: 2px dashed red;
+  min-width: 365px;
+}
+
+.cell-one{
+  text-align: left;
+  min-width: 210px;
+  padding-right: 10px;
+}
+
+.cell-two{
+  text-align: left;
+  min-width: 80px;
+  padding-left: 20px;
+}
+
+.food-diary{
+  margin: 20px;
 }

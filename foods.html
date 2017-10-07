@@ -12,20 +12,23 @@
     <script src="lib/foodSearch.js"></script>
   </head>
   <body>
-  <div class='food-diary'>
-    <div>
-      <form class="search-foods" method="get">
-        <input id='search-foods' rows="1" cols="50" placeholder='Filter by Name' oninput='searchFunction();'/>
-      </form>
+    <div class='food-diary-outline'>
+      <h2> Food Diary </h2>
+      <div class='food-diary'>
+        <div>
+          <form class="search-foods" method="get">
+            <input id='search-foods' rows="1" cols="50" placeholder='Filter by Name' oninput='searchFunction();'/>
+          </form>
+        </div>
+        <div class="">
+          <table class="food-table" id='food-table'>
+            <tr>
+              <th class="cell-one food-tbl-name-col">Name</th><th class="cell-two food-tbl-cal-col">Calories</th><th class="food-tbl-delete-column"></th>
+            </tr>
+          </table>
+        </div>
+      </div>
     </div>
-    <div class="">
-      <table class="food-table" id='food-table'>
-        <tr>
-          <th class="cell-one food-tbl-name-col">Name</th><th class="cell-two food-tbl-cal-col">Calories</th><th class="food-tbl-delete-column"></th>
-        </tr>
-      </table>
-    </div>
-  </div>
     <script src="main.bundle.js"></script>
   </body>
   <head>

@@ -9,10 +9,16 @@
     <script src='lib/foods.js'></script>
     <script src="lib/foodAjax.js"></script>
     <script src="lib/foodEdit.js"></script>
+    <script src="lib/foodSearch.js"></script>
   </head>
   <body>
+    <div>
+      <form class="search-foods" method="get">
+        <input id='search-foods' rows="1" cols="50" placeholder='Filter by Name' oninput='searchFunction();'/>
+      </form>
+    </div>
     <div class="">
-      <table class="food-table">
+      <table class="food-table" id='food-table'>
         <tr>
           <th class="food-tbl-name-col">Name</th>
           <th class="food-tbl-cal-col">Calories</th>

@@ -140,3 +140,11 @@ body{
 .food-diary{
   margin: 20px;
 }
+
+#food-table {
+  margin-top: 25px;
+}
+
+.create-food-form {
+  margin-bottom: 25px;
+}

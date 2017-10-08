@@ -23,6 +23,15 @@
               <input id='search-foods' rows="1" cols="50" placeholder='Filter by Name' oninput='searchFunction();'/>
             </form>
           </div>
+          <div class="create-food-form">
+            <form id="add-foods">
+              Name:<br>
+              <input type="text" name="name" id="food-name"><br>
+              Calorie Amount:<br>
+              <input type="text" name="calories" id="food-calories"><br>
+              <input type="submit" value="Add Food">
+            </form>
+          </div>
           <div class="food-table-div">
             <table class="food-table" id='food-table'>
               <tr class='food-table-headers'>

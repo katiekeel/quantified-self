@@ -1,7 +1,6 @@
 pry = require("pryjs");
 const Food = require("../lib/food");
 const makeFoods = require("../lib/foods").makeFoods;
-const createFoodsTable = require("../lib/foods").createFoodsTable;
 const assert = require("chai").assert;
 
 describe("Food.js and Foods.js tests", function(){
@@ -19,7 +18,4 @@ describe("Food.js and Foods.js tests", function(){
       assert.equal(550, food.calories)
     })
   });
-  context("Foods.js", function(){
-
-  })
 });

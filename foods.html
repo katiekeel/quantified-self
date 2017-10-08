@@ -9,26 +9,43 @@
     <script src='lib/foods.js'></script>
     <script src="lib/foodAjax.js"></script>
     <script src="lib/foodEdit.js"></script>
+    <script src="lib/foodSearch.js"></script>
   </head>
   <body>
+    <div class="third-body-pane">
+    </div>
+    <div>
+      <div class='food-diary-outline'>
+        <h2> Food Diary </h2>
+        <div class='food-diary'>
+          <div>
+            <form class="search-foods" method="get">
+              <input id='search-foods' rows="1" cols="50" placeholder='Filter by Name' oninput='searchFunction();'/>
+            </form>
+          </div>
+          <div class="create-food-form">
+            <form id="add-foods">
+              Name:<br>
+              <input type="text" name="name" id="food-name"><br>
+              Calorie Amount:<br>
+              <input type="text" name="calories" id="food-calories"><br>
+              <input type="submit" value="Add Food">
+            </form>
+          </div>
+          <div class="food-table-div">
+            <table class="food-table" id='food-table'>
+              <tr class='food-table-headers'>
+                <th class="cell-one food-tbl-name-header">Name</th><th class="food-tbl-cal-header">Calories</th>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="first-body-pane">
+      </div>
+      <div class="second-body-pane">
+      </div>
 
-    <h3>Add Food</h3>
-    <form id="add-foods">
-      Name:<br>
-      <input type="text" name="name" id="food-name"><br>
-      Calorie Amount:<br>
-      <input type="text" name="calories" id="food-calories"><br>
-      <input type="submit" value="Add Food">
-    </form>
-
-    <div class="">
-      <table class="food-table">
-        <tr>
-          <th class="food-tbl-name-col">Name</th>
-          <th class="food-tbl-cal-col">Calories</th>
-          <th class="food-tbl-delete-column"></th>
-        </tr>
-      </table>
     </div>
     <script src="main.bundle.js"></script>
   </body>

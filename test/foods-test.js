@@ -3,6 +3,7 @@ const Food = require("../lib/food");
 const makeFoods = require("../lib/foods").makeFoods;
 const assert = require("chai").assert;
 
+
 describe("Foods.js tests", function(){
   context("makeFoods", function(){
     it("makes Food objects from json hash", function(){

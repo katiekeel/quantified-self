@@ -5,6 +5,7 @@ const assert = require("chai").assert;
 global.$ = require('jquery');
 
 
+
 describe("Foods.js tests", function(){
   context("makeFoods", function(){
     it("makes Food objects from json hash", function(){

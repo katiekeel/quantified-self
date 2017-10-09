@@ -16,7 +16,7 @@
     </div>
     <div>
       <div class='food-diary-outline'>
-        <h2> Food Diary </h2>
+        <h2> Foods </h2>
         <div class='food-diary'>
           <div>
             <form class="search-foods" method="get">
@@ -24,12 +24,17 @@
             </form>
           </div>
           <div class="create-food-form">
+            <h3>Add New Food - *</h3>
             <form id="add-foods">
-              Name:<br>
-              <input type="text" name="name" id="food-name"><br>
-              Calorie Amount:<br>
-              <input type="text" name="calories" id="food-calories"><br>
-              <input type="submit" value="Add Food">
+              <div class="first-add-block">
+                <span class='add-foods-block-one'>Name:</span>
+                <input type="text" name="name" id="food-name"><br>
+                <span class='add-foods-block-two'>Calorie Amount:</span>
+                <input type="text" name="calories" id="food-calories">
+              </div>
+              <div class="second-add-block">
+                <input type="submit" value="Add Food" id='food-add-btn'></br>
+              </div>
             </form>
           </div>
           <div class="food-table-div">
@@ -48,9 +53,6 @@
       </div>
       <div class="first-body-pane">
       </div>
-      <div class="second-body-pane">
-      </div>
-
     </div>
     <script src="main.bundle.js"></script>
   </body>

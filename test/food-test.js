@@ -2,6 +2,9 @@ pry = require("pryjs");
 const Food = require("../lib/food");
 const makeFoods = require("../lib/foods").makeFoods;
 const assert = require("chai").assert;
+require('jsdom-global')()
+global.$ = require('jquery');
+
 
 describe("Food.js and Foods.js tests", function(){
   context("Food.js", function(){

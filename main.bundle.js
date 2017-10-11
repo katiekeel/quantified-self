@@ -46,6 +46,7 @@
 
 	__webpack_require__(1);
 	__webpack_require__(2);
+	__webpack_require__(4);
 	__webpack_require__(5);
 	__webpack_require__(6);
 	__webpack_require__(7);
@@ -53,7 +54,6 @@
 	__webpack_require__(9);
 	__webpack_require__(10);
 	__webpack_require__(11);
-	__webpack_require__(4);
 
 /***/ }),
 /* 1 */
@@ -91,18 +91,12 @@
 
 	function createMealsTable(unsortedFoods) {
 	  foodsArray = sortFoodsArray(unsortedFoods);
-	  return HTMLHelper(foodsArray, '#tbod');
+	  return HTMLHelper.createTableTemplate(foodsArray, '#tbod');
 	}
 
 	function createFoodsTable(unsortedFoods) {
 	  foodsArray = sortFoodsArray(unsortedFoods);
-	  foodsArray.forEach(function (food) {
-	    $(".food-table").append(foodString(food));
-	  });
-	}
-
-	function foodString(food) {
-	  return "<tr class='tbl-row'><td class='cell-one food-cell' contenteditable='true'>" + "<span class='replaceme-name' contenteditable='true'>" + food.name + "</span>" + "</td><td class='cell-two cal-cell'>" + "<span class='replaceme-cal' contenteditable='true'>" + food.calories + "</span>" + "</td><td class='delete-cell'><button class='delete-food-btn'><img class='delete-food-img' src='lib/images/delete_red.png'/></button></td><td class='food-id' style='visibility:hidden;'>" + food.id + "</td></tr>";
+	  return HTMLHelper.createTableTemplate(foodsArray, '.food-table');
 	}
 
 	function sortFoodsArray(unsortedFoods) {
@@ -110,10 +104,6 @@
 	    return b.id - a.id;
 	  });
 	  return sortedFoods;
-	}
-
-	function addNewFoodToTable(food) {
-	  $(".food-table tr:first").after(foodString(food));
 	}
 
 	module.exports = { logErrors, makeFoods, createFoodsTable, addNewFoodToTable };
@@ -10394,7 +10384,25 @@
 	    $('#food-name').val('');
 	    $('#food-calories').val('');
 	  }
+	  static blankNameError() {
+	    $("#search-foods-area").append("<div class='validation error-message' style='color:red;margin-bottom: 20px;'>Please enter a food name</div>");
+	    $('#food-name').focus();
+	    focusSet = true;
+	  }
+	  static blankCaloriesError() {
+	    $("#search-foods-area").append("<div class='validation error-message' style='color:red;margin-bottom: 20px;'>Please enter a calorie amount</div>");
+	    $('#food-calories').focus();
+	    focusSet = true;
+	  }
+	  static addNewFoodToTable(food) {
+	    $(".food-table tr:first").after(foodString(food));
+	  }
+	  static foodString(food) {
+	    return "<tr class='tbl-row'><td class='cell-one food-cell' contenteditable='true'>" + "<span class='replaceme-name' contenteditable='true'>" + food.name + "</span>" + "</td><td class='cell-two cal-cell'>" + "<span class='replaceme-cal' contenteditable='true'>" + food.calories + "</span>" + "</td><td class='delete-cell'><button class='delete-food-btn'><img class='delete-food-img' src='lib/images/delete_red.png'/></button></td><td class='food-id' style='visibility:hidden;'>" + food.id + "</td></tr>";
+	  }
 	}
+
+	module.exports = HTMLHelper;
 
 /***/ }),
 /* 5 */
@@ -10402,6 +10410,7 @@
 
 	var $ = __webpack_require__(3);
 	var foods = __webpack_require__(2);
+	var HTMLHelper = __webpack_require__(4);
 
 	$(document).ready(function () {
 	  $.ajax({
@@ -10419,7 +10428,7 @@
 	    data: formattedFood,
 	    dataType: "json",
 	    success: function addFoodFunction(data) {
-	      foods.addNewFoodToTable(data);
+	      HTMLHelper.addNewFoodToTable(data);
 	    }
 	  });
 	};
@@ -10465,29 +10474,17 @@
 
 	function checkEntryAndCreate(food) {
 	  if (food[0].value == "" && food[1].value == "") {
-	    blankNameError();
-	    blankCaloriesError();
+	    HTMLHelper.blankNameError();
+	    HTMLHelper.blankCaloriesError();
 	  } else if (food[1].value == "") {
-	    blankCaloriesError();
+	    HTMLHelper.blankCaloriesError();
 	  } else if (food[0].value == "") {
-	    blankNameError();
+	    HTMLHelper.blankNameError();
 	  } else {
-	    HTMLHelper.clearAddFoodResults();
+	    HTMLHelper.clearAddFormResults();
 	    createFoods(food);
 	  }
 	};
-
-	function blankNameError() {
-	  $("#search-foods-area").append("<div class='validation error-message' style='color:red;margin-bottom: 20px;'>Please enter a food name</div>");
-	  $('#food-name').focus();
-	  focusSet = true;
-	}
-
-	function blankCaloriesError() {
-	  $("#food-calories").after("<div class='validation error-message' style='color:red;margin-bottom: 20px;'>Please enter a calorie amount</div>");
-	  $('#food-calories').focus();
-	  focusSet = true;
-	}
 
 	function createFoods(food) {
 	  foodData = { id: null, name: food[0].value, calories: food[1].value };

@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Quantified Self - Manage Foods</title>
+    <script src='./lib/foodSearch.js'></script>
     <link rel="stylesheet" type="text/css" href="foods.css">
   </head>
   <body>
@@ -11,7 +12,7 @@
     <div>
       <div class='food-diary-outline'>
         <h2> Foods </h2>
-        <a href="http://localhost:8080/webpack-dev-server/"> Meals Diary </a>
+        <a href="http://localhost:8080/webpack-dev-server/index.html"> Meals Diary </a>
         <div class='food-diary'>
           <div>
             <form class="search-foods" method="get" id='search-foods-area'>
@@ -35,12 +36,12 @@
           <div class="food-table-div">
             <table class="food-table" id='food-table'>
               <thead>
-              <tr class='food-table-headers'>
-                <th class="cell-one food-tbl-name-header">Name</th><th class="food-tbl-cal-header">Calories</th>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
+                <tr class='food-table-headers'>
+                  <th class="cell-one food-tbl-name-header">Name</th><th class="food-tbl-cal-header">Calories</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
             </table>
           </div>
         </div>
@@ -50,5 +51,4 @@
     </div>
     <script src="main.bundle.js"></script>
   </body>
-  <head>
 </html>

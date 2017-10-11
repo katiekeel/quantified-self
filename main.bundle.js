@@ -10565,8 +10565,6 @@
 	    return a.innerHTML.toUpperCase().indexOf(filter, 51) > -1;
 	}
 
-	searchFunction();
-
 /***/ }),
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -10574,11 +10572,25 @@
 	var $ = __webpack_require__(3);
 
 	$(document).ready(function () {
-	  function calorieTotals() {
+	  function calorieTotalUp() {
 	    var table = $('.tbod td:second-child').text();
-	    alert('Hello');
-	  }
-	  calorieTotals();
+	    debugger;
+	  };
+	  calorieTotalsUp();
+	});
+
+	var $ = __webpack_require__(3);
+
+	// var ajaxCalls = require('./foodAjax.js');
+	$(document).ready(function () {
+	  function deleteMealFood() {
+	    $('.meal-table').on('click', '.delete-food-btn', function (e) {
+	      $(this).closest('tr').remove();
+	      // let id = $(this).closest('tr').find('td.food-id').text();
+	      // ajaxCalls.deleteAjax(id);
+	    });
+	  };
+	  deleteMealFood();
 	});
 
 /***/ }),

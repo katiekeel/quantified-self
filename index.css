@@ -1,0 +1,94 @@
+body{
+  padding-left: 10px;
+  background-image: url('./lib/images/rough-ecru.png');
+}
+
+.diary-body {
+  padding: 30px;
+  padding-top: 0px;
+  margin: 30px;
+  margin-top: 30px;
+  margin-left: 40px;
+  border-left: 2px solid black;
+  font-family: "Georgia", "Palatino", serif;
+}
+
+h3{
+  width: 50%;
+  padding: 10px;
+  padding-bottom: 3px;
+  border-bottom: 3px solid rgb(81,87,96);
+  border-left: 3px dashed rgb(81,87,96);
+  background-color: #7E8F7C;
+  font-size: 1.5em;
+  text-decoration: underline;
+  font-weight: bolder;
+  font-family: cursive;
+  margin-bottom: 5px;
+  margin-top: 0px;
+}
+
+table{
+  border: 3px solid rgb(81,87,96);
+  margin-bottom: 30px;
+  background: white;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+
+.diary-body, th {
+  padding: 10px;
+  padding-left: 7px;
+}
+.diary-body, td {
+  padding: 5px;
+  padding-left: 20px;
+}
+.col-first{
+  display: inline-block;
+  width: 45%;
+}
+
+.col-second{
+  display: inline-block;
+  width: 45%;
+}
+
+.cell-one{
+  min-width: 200px;
+}
+
+.cell-two{
+  min-width: 80px;
+  max-width: 120px;
+}
+
+thead.meal-header, .meal-foot{
+  text-align: left;
+  background-color: rgb(121,127,136);
+  font-weight: bold;
+}
+
+.delete-food-btn{
+  margin-top: 4px;
+  height: 20px;
+  width: 20px;
+  background-color: white;
+}
+
+.delete-food-img{
+  height: 20px;
+  width: 20px;
+  margin-left: -9px;
+  margin-top: -5px;
+}
+
+.food-id{
+  max-width:5px;
+  padding: 0px;
+}
+
+.meal-food-cal{
+  text-align: left;
+  padding-left: 60px;
+}

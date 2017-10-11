@@ -3,16 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>Quantified Self - Manage Foods</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src='./lib/foodSearch.js'></script>
     <link rel="stylesheet" type="text/css" href="foods.css">
-    <script src='lib/food.js'></script>
-    <script src='lib/foods.js'></script>
-    <script src="lib/foodAjax.js"></script>
-    <script src="lib/foodEdit.js"></script>
-    <script src="lib/foodSearch.js"></script>
-    <script src="lib/foodCreate.js"></script>
-
-    </script>
   </head>
   <body>
     <div class="third-body-pane">
@@ -20,9 +12,10 @@
     <div>
       <div class='food-diary-outline'>
         <h2> Foods </h2>
+        <a href="/index.html"> Meals Diary </a>
         <div class='food-diary'>
           <div>
-            <form class="search-foods" method="get">
+            <form class="search-foods" method="get" id='search-foods-area'>
               <input id='search-foods' rows="1" cols="50" placeholder='Filter by Name' oninput='searchFunction();'/>
             </form>
           </div>
@@ -43,13 +36,12 @@
           <div class="food-table-div">
             <table class="food-table" id='food-table'>
               <thead>
-              <tr class='food-table-headers'>
-                <th class="cell-one food-tbl-name-header">Name</th><th class="food-tbl-cal-header">Calories</th>
-              </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
+                <tr class='food-table-headers'>
+                  <th class="cell-one food-tbl-name-header">Name</th><th class="food-tbl-cal-header">Calories</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
             </table>
           </div>
         </div>
@@ -59,5 +51,4 @@
     </div>
     <script src="main.bundle.js"></script>
   </body>
-  <head>
 </html>

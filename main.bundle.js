@@ -10584,9 +10584,11 @@
 
 	$(document).ready(function () {
 	  function calorieColumnFinder() {
-	    var table = $('.tbod td:nth-child(2)');
+	    var tables = this.children('.tbod');
 	    debugger;
+	    var table = $('.tbod td:nth-child(2)');
 	    return calorieTotalUp(table);
+	    HTMLHelper.setCalories();
 	  };
 	  calorieColumnFinder();
 	});

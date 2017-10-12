@@ -6,9 +6,11 @@ body{
 .diary-body {
   padding: 30px;
   padding-top: 0px;
-  margin: 30px;
+  padding-right: 10px;
+  margin-bottom: 30px;
   margin-top: 30px;
   margin-left: 40px;
+  margin-right: 0px;
   border-left: 2px solid black;
   font-family: "Georgia", "Palatino", serif;
 }
@@ -33,7 +35,8 @@ table{
   margin-bottom: 30px;
   background: white;
   padding: 10px;
-  margin-bottom: 30px;
+  margin-right: 10px;
+  max-width:500px;
 }
 
 .diary-body, th {
@@ -76,6 +79,11 @@ thead.meal-header, .meal-foot{
   background-color: white;
 }
 
+.delete-cell{
+  max-width: 30px;
+  padding:0px;
+  padding-left: 5px;
+}
 .delete-food-img{
   height: 20px;
   width: 20px;
@@ -83,8 +91,8 @@ thead.meal-header, .meal-foot{
   margin-top: -5px;
 }
 
-.food-id{
-  max-width:5px;
+.meal-id, .food-id{
+  max-width:2px;
   padding: 0px;
 }
 

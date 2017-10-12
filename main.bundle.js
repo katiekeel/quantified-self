@@ -54,6 +54,7 @@
 	__webpack_require__(9);
 	__webpack_require__(10);
 	__webpack_require__(11);
+	__webpack_require__(12);
 
 /***/ }),
 /* 1 */
@@ -106,7 +107,7 @@
 	  return sortedFoods;
 	}
 
-	module.exports = { logErrors, makeFoods, createFoodsTable, addNewFoodToTable };
+	module.exports = { logErrors, makeFoods, createFoodsTable };
 
 /***/ }),
 /* 3 */
@@ -10396,11 +10397,11 @@
 	  }
 	  static addNewFoodToTable(food) {
 	    $(".food-table tr:first").after(foodString(food));
+	    function foodString(food) {
+	      return "<tr class='tbl-row'><td class='cell-one food-cell' contenteditable='true'>" + "<span class='replaceme-name' contenteditable='true'>" + food.name + "</span>" + "</td><td class='cell-two cal-cell'>" + "<span class='replaceme-cal' contenteditable='true'>" + food.calories + "</span>" + "</td><td class='delete-cell'><button class='delete-food-btn'><img class='delete-food-img' src='lib/images/delete_red.png'/></button></td><td class='food-id' style='visibility:hidden;'>" + food.id + "</td></tr>";
+	    }
 	  }
-	  static foodString(food) {
-	    return "<tr class='tbl-row'><td class='cell-one food-cell' contenteditable='true'>" + "<span class='replaceme-name' contenteditable='true'>" + food.name + "</span>" + "</td><td class='cell-two cal-cell'>" + "<span class='replaceme-cal' contenteditable='true'>" + food.calories + "</span>" + "</td><td class='delete-cell'><button class='delete-food-btn'><img class='delete-food-img' src='lib/images/delete_red.png'/></button></td><td class='food-id' style='visibility:hidden;'>" + food.id + "</td></tr>";
-	  }
-	}
+	};
 
 	module.exports = HTMLHelper;
 
@@ -10416,8 +10417,8 @@
 	  $.ajax({
 	    type: "get",
 	    url: "http://localhost:3000/api/v1/foods"
-	  }).done(function (post) {
-	    foods.createFoodsTable(foods.makeFoods(post));
+	  }).done(function (data) {
+	    foods.createTable(data, ".food-table", foods.foodString);
 	  }).catch(foods.logErrors);
 	});
 
@@ -10581,39 +10582,105 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $ = __webpack_require__(3);
+	var foods = __webpack_require__(2);
+	var meals = __webpack_require__(11);
 
 	$(document).ready(function () {
-	  function calorieColumnFinder() {
-	    var tables = this.children('.tbod');
-	    debugger;
-	    var table = $('.tbod td:nth-child(2)');
-	    return calorieTotalUp(table);
-	    HTMLHelper.setCalories();
-	  };
-	  calorieColumnFinder();
+	  $.ajax({
+	    type: "get",
+	    url: "http://localhost:3000/api/v1/meals"
+	  }).done(function (data) {
+	    meals.createTables(data);
+	  }).catch(foods.logErrors);
 	});
 
-	function calorieTotalUp(table) {
-	  return table.each(function (key, val) {
-	    console.log(val.innerText);
-	  });
+	function deleteMealFoodAjax(meal, food) {
+	  console.log(food);
+	  $.ajax({
+	    method: 'DELETE',
+	    url: "http://localhost:3000/api/v1/meals/" + meal + "/foods/" + food
+	  }).done().catch(foods.logErrors);
 	}
+
+	module.exports = { deleteMealFoodAjax };
 
 /***/ }),
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $ = __webpack_require__(3);
-	// var ajaxCalls = require('./foodAjax.js');
+	var foods = __webpack_require__(2);
+
+	function createTables(meals) {
+	  meals.forEach(function (meal) {
+	    createMealTable(meal, meal.name, mealString);
+	  });
+	}
+
+	function createMealTable(meal, name, mealString) {
+	  meal.foods.forEach(function (food) {
+	    $(`#${name.toLowerCase()}-table tbody`).append(mealString(meal, food));
+	  });
+	}
+
+	function mealString(meal, food) {
+	  return `<tr><td class='cell-one meal-food-name'>${food.name}</td>
+	  <td class='meal-food-cal cell-two'>${food.calories}</td>
+	  <td class='delete-cell'>
+	    <button class='delete-food-btn'><img class='delete-food-img' src='lib/images/delete_red.png'/></button>
+	  </td>
+	  <td class='meal-id' style='visibility:hidden';>${meal.id}</td>
+	  <td class='food-id' style='visibility:hidden;'>${food.id}</td></tr>`;
+	}
+
 	$(document).ready(function () {
-	  function deleteMealFood() {
-	    $('.meal-table').on('click', '.delete-food-btn', function (e) {
-	      $(this).closest('tr').remove();
-	      // let id = $(this).closest('tr').find('td.food-id').text();
-	      // ajaxCalls.deleteAjax(id);
-	    });
+	  function calorieColumnFinder() {
+	    var tables = $('.diary-body').find('.tbod');
+	    var total = tableCalorieBreakout(tables);
+	    setCalories(total);
 	  };
-	  deleteMealFood();
+	  calorieColumnFinder();
+	});
+
+	function tableCalorieBreakout(tables) {
+	  tables.each(function (key, val) {
+	    var tableId = $(val).parent().attr('id');
+	    var calories = $(val).find('td:nth-child(2)');
+	    return calorieTotalUp(tableId, calories);
+	  });
+	}
+
+	function calorieTotalUp(tableId, calories) {
+	  var calTotal = 0;
+	  var tableId = '#' + tableId;
+	  calories.each(function (key, val) {
+	    return calTotal += Number(val.innerText);
+	  });
+	  setCalories(tableId, calTotal);
+	}
+
+	function setCalories(id, total) {
+	  var table = $(id);
+	  return table.find('.calorie-total').append(total);
+	}
+
+	module.exports = { createTables };
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var $ = __webpack_require__(3);
+	var ajaxCalls = __webpack_require__(10);
+
+	$(document).ready(function () {
+	  $('.meal-table').on('click', '.delete-food-btn', function (e) {
+	    $(this).closest('tr').remove();
+	    let mealId = $(this).closest('tr').find('td.meal-id').text();
+	    let foodId = $(this).closest('tr').find('td.food-id').text();
+	    console.log(foodId);
+	    ajaxCalls.deleteMealFoodAjax(mealId, foodId);
+	  });
 	});
 
 /***/ })

@@ -104,7 +104,7 @@ body{
 .delete-cell{
   padding-left: 8px;
   padding-right: 5px;
-  background-color: rgb(81,87,96)
+  background-color: rgb(81,87,96);
 }
 
 .food-table-headers{

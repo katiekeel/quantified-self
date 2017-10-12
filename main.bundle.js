@@ -10401,6 +10401,20 @@
 	      return "<tr class='tbl-row'><td class='cell-one food-cell' contenteditable='true'>" + "<span class='replaceme-name' contenteditable='true'>" + food.name + "</span>" + "</td><td class='cell-two cal-cell'>" + "<span class='replaceme-cal' contenteditable='true'>" + food.calories + "</span>" + "</td><td class='delete-cell'><button class='delete-food-btn'><img class='delete-food-img' src='lib/images/delete_red.png'/></button></td><td class='food-id' style='visibility:hidden;'>" + food.id + "</td></tr>";
 	    }
 	  }
+	  static stylizeRemainingCalorie(id, total, num) {
+	    var remainingCals = num - total;
+	    var color = determineColor(remainingCals);
+	    $(id).find('.remaining-calories').append(remainingCals).css(color);
+	    function determineColor(cals) {
+	      if (cals >= 0) {
+	        return 'green';
+	      } else if (cals < 0) {
+	        return 'red';
+	      } else {
+	        console.log('color error');
+	      }
+	    }
+	  }
 	};
 
 	module.exports = HTMLHelper;
@@ -10418,7 +10432,7 @@
 	    type: "get",
 	    url: "http://localhost:3000/api/v1/foods"
 	  }).done(function (data) {
-	    foods.createTable(data, ".food-table", foods.foodString);
+	    foods.createFoodsTable(foods.makeFoods(data));
 	  }).catch(foods.logErrors);
 	});
 
@@ -10610,6 +10624,7 @@
 
 	var $ = __webpack_require__(3);
 	var foods = __webpack_require__(2);
+	var HTMLHelper = __webpack_require__(4);
 
 	function createTables(meals) {
 	  meals.forEach(function (meal) {
@@ -10634,13 +10649,16 @@
 	}
 
 	$(document).ready(function () {
-	  function calorieColumnFinder() {
-	    var tables = $('.diary-body').find('.tbod');
-	    var total = tableCalorieBreakout(tables);
-	    setCalories(total);
-	  };
-	  calorieColumnFinder();
+	  setTimeout(function () {
+	    return calorieColumnFinder();
+	    return ammendRemainingCalories();
+	  }, 500);
 	});
+
+	function calorieColumnFinder() {
+	  var tables = $('.diary-body').find('.tbod');
+	  return tableCalorieBreakout(tables);
+	};
 
 	function tableCalorieBreakout(tables) {
 	  tables.each(function (key, val) {
@@ -10664,6 +10682,35 @@
 	  return table.find('.calorie-total').append(total);
 	}
 
+	function ammendRemainingCalories() {
+	  var tables = $('.diary-body').find('.tbod');
+	  tables.each(function (key, val) {
+	    var tableId = $(val).parent().attr('id');
+	    return totalCaloriesFinder(tableId);
+	  });
+	  ammendRemainingCalories();
+	}
+
+	function totalCaloriesFinder(id) {
+	  var id = '#' + id;
+	  var totalCalories = $(id).find('.calorie-total').val();
+	  return remainingCalorieSorter(id, totalCalories);
+	}
+
+	function remainingCaloriesSorter(id, totalCalories) {
+	  if (id === '#breakfast-table') {
+	    HTMLHelper.stylizeRemainingCalorie(id, totalCalories, 400);
+	  } else if (id === '#lunch-table') {
+	    HTMLHelper.stylizeRemainingCalorie(id, totalCalories, 600);
+	  } else if (id === '#dinner-table') {
+	    HTMLHelper.stylizeRemainingCalorie(id, totalCalories, 800);
+	  } else if (id === '#snack-table') {
+	    HTMLHelper.stylizeRemainingCalorie(id, totalCalories, 200);
+	  } else {
+	    console.log('id did not match any given table, or is undefined');
+	  }
+	}
+
 	module.exports = { createTables };
 
 /***/ }),
@@ -10678,7 +10725,6 @@
 	    $(this).closest('tr').remove();
 	    let mealId = $(this).closest('tr').find('td.meal-id').text();
 	    let foodId = $(this).closest('tr').find('td.food-id').text();
-	    console.log(foodId);
 	    ajaxCalls.deleteMealFoodAjax(mealId, foodId);
 	  });
 	});

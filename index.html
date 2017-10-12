@@ -21,7 +21,7 @@
           </tbody>
           <tfoot class='meal-foot'>
             <tr>
-              <td class='total-cal-label cell-one'>Total Calories:</td><td class='calorie-total'></td>
+              <td class='total-cal-label cell-one'>Total Calories:</td><td class='calorie-total' id='breakfast-total'></td>
             </tr>
             <tr>
               <td class='remaining-cal-label cell-one'>Remaining Calories:</td><td class='remaining-total'></td>
@@ -41,7 +41,7 @@
           </tbody>
           <tfoot class='meal-foot'>
             <tr>
-              <td class='total-cal-label cell-one'>Total Calories:</td><td class='calorie-total'></td>
+              <td class='total-cal-label cell-one'>Total Calories:</td><td class='calorie-total' id='lunch-total'></td>
             </tr>
             <tr>
               <td class='remaining-cal-label cell-one'>Remaining Calories:</td><td class='remaining-total'></td>
@@ -61,7 +61,7 @@
           </tbody>
           <tfoot class='meal-foot'>
             <tr>
-              <td class='total-cal-label cell-one'>Total Calories:</td><td class='calorie-total'></td>
+              <td class='total-cal-label cell-one'>Total Calories:</td><td class='calorie-total' id='dinner-total'></td>
             </tr>
             <tr>
               <td class='remaining-cal-label cell-one'>Remaining Calories:</td><td class='remaining-total'></td>
@@ -81,12 +81,32 @@
           </tbody>
           <tfoot class='meal-foot'>
             <tr>
-              <td class='total-cal-label cell-one'>Total Calories:</td><td class='calorie-total'></td>
+              <td class='total-cal-label cell-one'>Total Calories:</td><td class='calorie-total' id='snack-total'></td>
             </tr>
             <tr>
               <td class='remaining-cal-label cell-one'>Remaining Calories:</td><td class='remaining-total'></td>
             </tr>
           </tfoot>
+        </table>
+      </div>
+      <hr>
+    </div>
+    <div class="diary-second-tier">
+      <div>
+        <table id='totals-tbl'>
+          <h3>Totals Table</h3>
+          <tr>
+            <th></th><th id='total-header'>Totals</th>
+          </tr>
+          <tr>
+            <td>Goal Calories</td><td>2000</td>
+          </tr>
+          <tr>
+            <td>Calories Consumed</td><td id='calories-consumed'></td>
+          </tr>
+          <tr id='remaining-row'>
+            <td>Remaining Calories</td><td id="remaining-total"></td>
+          </tr>
         </table>
       </div>
     </div>

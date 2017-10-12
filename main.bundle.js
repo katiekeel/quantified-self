@@ -55,6 +55,7 @@
 	__webpack_require__(10);
 	__webpack_require__(11);
 	__webpack_require__(12);
+	__webpack_require__(13);
 
 /***/ }),
 /* 1 */
@@ -10404,15 +10405,19 @@
 	  static stylizeRemainingCalorie(id, total, num) {
 	    var remainingCals = num - total;
 	    var color = determineColor(remainingCals);
-	    $(id).find('.remaining-calories').append(remainingCals).css(color);
+	    id === '#remaining-total' ? stylizeTotals() : $(id).find('.remaining-total').append(remainingCals).css('color', color);
 	    function determineColor(cals) {
 	      if (cals >= 0) {
-	        return 'green';
+	        return '#7E8F7C';
 	      } else if (cals < 0) {
-	        return 'red';
+	        return '#c13607';
 	      } else {
 	        console.log('color error');
 	      }
+	    }
+	    function stylizeTotals() {
+	      $(id).append(remainingCals).css('color', color);
+	      $('#remaining-row').css('border', '2px solid ' + color);
 	    }
 	  }
 	};
@@ -10650,9 +10655,9 @@
 
 	$(document).ready(function () {
 	  setTimeout(function () {
-	    return calorieColumnFinder();
-	    return ammendRemainingCalories();
-	  }, 500);
+	    calorieColumnFinder();
+	    ammendRemainingCalories();
+	  }, 200);
 	});
 
 	function calorieColumnFinder() {
@@ -10688,13 +10693,12 @@
 	    var tableId = $(val).parent().attr('id');
 	    return totalCaloriesFinder(tableId);
 	  });
-	  ammendRemainingCalories();
 	}
 
 	function totalCaloriesFinder(id) {
 	  var id = '#' + id;
-	  var totalCalories = $(id).find('.calorie-total').val();
-	  return remainingCalorieSorter(id, totalCalories);
+	  var totalCalories = $(id).find('.calorie-total').text();
+	  return remainingCaloriesSorter(id, Number(totalCalories));
 	}
 
 	function remainingCaloriesSorter(id, totalCalories) {
@@ -10728,6 +10732,33 @@
 	    ajaxCalls.deleteMealFoodAjax(mealId, foodId);
 	  });
 	});
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var $ = __webpack_require__(3);
+	var HTMLHelper = __webpack_require__(4);
+
+	$(document).ready(function () {
+	  setTimeout(function () {
+	    calculateCaloriesConsumed();
+	  }, 500);
+	});
+
+	function calculateCaloriesConsumed() {
+	  var sTotal = Number($('#snack-total').text());
+	  var bTotal = Number($('#breakfast-total').text());
+	  var lTotal = Number($('#lunch-total').text());
+	  var dTotal = Number($('#dinner-total').text());
+	  var calTotal = sTotal + bTotal + lTotal + dTotal;
+	  $('#calories-consumed').append(calTotal);
+	  return calculateTotalRemainingCals(calTotal);
+	}
+
+	function calculateTotalRemainingCals(calTotal) {
+	  HTMLHelper.stylizeRemainingCalorie('#remaining-total', calTotal, 2000);
+	}
 
 /***/ })
 /******/ ]);

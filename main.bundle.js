@@ -55,6 +55,7 @@
 	__webpack_require__(10);
 	__webpack_require__(11);
 	__webpack_require__(12);
+	__webpack_require__(13);
 
 /***/ }),
 /* 1 */
@@ -10404,12 +10405,12 @@
 	  static stylizeRemainingCalorie(id, total, num) {
 	    var remainingCals = num - total;
 	    var color = determineColor(remainingCals);
-	    $(id).find('.remaining-calories').append(remainingCals).css(color);
+	    var thing = $(id).find('.remaining-total').append(remainingCals).css('color', color);
 	    function determineColor(cals) {
 	      if (cals >= 0) {
-	        return 'green';
+	        return '#7E8F7C';
 	      } else if (cals < 0) {
-	        return 'red';
+	        return '#c13607';
 	      } else {
 	        console.log('color error');
 	      }
@@ -10650,8 +10651,8 @@
 
 	$(document).ready(function () {
 	  setTimeout(function () {
-	    return calorieColumnFinder();
-	    return ammendRemainingCalories();
+	    calorieColumnFinder();
+	    ammendRemainingCalories();
 	  }, 500);
 	});
 
@@ -10688,13 +10689,12 @@
 	    var tableId = $(val).parent().attr('id');
 	    return totalCaloriesFinder(tableId);
 	  });
-	  ammendRemainingCalories();
 	}
 
 	function totalCaloriesFinder(id) {
 	  var id = '#' + id;
-	  var totalCalories = $(id).find('.calorie-total').val();
-	  return remainingCalorieSorter(id, totalCalories);
+	  var totalCalories = $(id).find('.calorie-total').text();
+	  return remainingCaloriesSorter(id, Number(totalCalories));
 	}
 
 	function remainingCaloriesSorter(id, totalCalories) {
@@ -10728,6 +10728,23 @@
 	    ajaxCalls.deleteMealFoodAjax(mealId, foodId);
 	  });
 	});
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var $ = __webpack_require__(3);
+
+	$(document).ready(function () {
+	  setTimeout(function () {
+	    calculateCaloriesConsumed();
+	    calculateTotalRemainingCals();
+	  }, 1000);
+	});
+
+	function calculateCaloriesConsumed() {
+	  debugger;
+	}
 
 /***/ })
 /******/ ]);

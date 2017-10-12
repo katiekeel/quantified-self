@@ -111,3 +111,19 @@ thead.meal-header, .meal-foot{
   font-size: 1.3em;
   text-shadow: 2px 2px black;
 }
+
+.diary-second-tier{
+  padding: 30px;
+  margin-left: 40px;
+  padding-top: 0px;
+}
+
+#totals-tbl{
+  font-size: 1.6em;
+  width: 450px;
+}
+
+#total-header{
+  text-decoration: underline;
+  text-align: left;
+}

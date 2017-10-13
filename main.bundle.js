@@ -10405,7 +10405,7 @@
 	  static stylizeRemainingCalorie(id, total, num) {
 	    var remainingCals = num - total;
 	    var color = determineColor(remainingCals);
-	    id === '#remaining-total' ? stylizeTotals() : $(id).find('.remaining-total').append(remainingCals).css('color', color);
+	    id === '#remaining-total' ? stylizeTotals(color) : $(id).find('.remaining-total').append(remainingCals).css('color', color);
 	    function determineColor(cals) {
 	      if (cals >= 0) {
 	        return '#7E8F7C';
@@ -10415,9 +10415,10 @@
 	        console.log('color error');
 	      }
 	    }
-	    function stylizeTotals() {
+	    function stylizeTotals(color) {
 	      $(id).append(remainingCals).css('color', color);
-	      $('#remaining-row').css('border', '2px solid ' + color);
+	      var borderColor = '3px double ' + color;
+	      $('#remaining-total').css('border-top', borderColor);
 	    }
 	  }
 	};
@@ -10601,27 +10602,29 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $ = __webpack_require__(3);
-	var foods = __webpack_require__(2);
-	var meals = __webpack_require__(11);
+	var HTMLHelper = __webpack_require__(4);
 
 	$(document).ready(function () {
-	  $.ajax({
-	    type: "get",
-	    url: "http://localhost:3000/api/v1/meals"
-	  }).done(function (data) {
-	    meals.createTables(data);
-	  }).catch(foods.logErrors);
+	  setTimeout(function () {
+	    calculateCaloriesConsumed();
+	  }, 500);
 	});
 
-	function deleteMealFoodAjax(meal, food) {
-	  console.log(food);
-	  $.ajax({
-	    method: 'DELETE',
-	    url: "http://localhost:3000/api/v1/meals/" + meal + "/foods/" + food
-	  }).done().catch(foods.logErrors);
+	function calculateCaloriesConsumed() {
+	  var sTotal = Number($('#snack-total').text());
+	  var bTotal = Number($('#breakfast-total').text());
+	  var lTotal = Number($('#lunch-total').text());
+	  var dTotal = Number($('#dinner-total').text());
+	  var calTotal = sTotal + bTotal + lTotal + dTotal;
+	  $('#calories-consumed').append(calTotal);
+	  return calculateTotalRemainingCals(calTotal);
 	}
 
-	module.exports = { deleteMealFoodAjax };
+	function calculateTotalRemainingCals(calTotal) {
+	  HTMLHelper.stylizeRemainingCalorie('#remaining-total', calTotal, 2000);
+	}
+
+	module.exports = calculateCaloriesConsumed;
 
 /***/ }),
 /* 11 */
@@ -10630,16 +10633,17 @@
 	var $ = __webpack_require__(3);
 	var foods = __webpack_require__(2);
 	var HTMLHelper = __webpack_require__(4);
+	var totals = __webpack_require__(10);
 
 	function createTables(meals) {
 	  meals.forEach(function (meal) {
-	    createMealTable(meal, meal.name, mealString);
+	    createMealTable(meal, mealString);
 	  });
 	}
 
-	function createMealTable(meal, name, mealString) {
+	function createMealTable(meal, mealString) {
 	  meal.foods.forEach(function (food) {
-	    $(`#${name.toLowerCase()}-table tbody`).append(mealString(meal, food));
+	    $(`#${meal.name.toLowerCase()}-table tbody`).append(mealString(meal, food));
 	  });
 	}
 
@@ -10684,6 +10688,7 @@
 
 	function setCalories(id, total) {
 	  var table = $(id);
+	  table.find('.calories-total').val('');
 	  return table.find('.calorie-total').append(total);
 	}
 
@@ -10715,14 +10720,58 @@
 	  }
 	}
 
-	module.exports = { createTables };
+	function clearHouse() {
+	  clearRemainingCalValues();
+	  calorieColumnFinder();
+	  ammendRemainingCalories();
+	  totals.calculateCaloriesConsumed();
+	}
+
+	function clearRemainingCalValues() {
+	  var tables = $('.diary-body').find('.tbod');
+	  tables.each(function (key, val) {
+	    var tableId = $(val).parent().attr('id');
+	    tableId = '#' + tableId;
+	    var cell = $(tableId).find('.calorie-total').text('');
+	    var cell = $(tableId).find('.remaining-total').text('');
+	  });
+	}
+
+	module.exports = { createTables, ammendRemainingCalories, clearHouse };
 
 /***/ }),
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $ = __webpack_require__(3);
-	var ajaxCalls = __webpack_require__(10);
+	var foods = __webpack_require__(2);
+	var meals = __webpack_require__(11);
+
+	$(document).ready(function () {
+	  $.ajax({
+	    type: "get",
+	    url: "http://localhost:3000/api/v1/meals"
+	  }).done(function (data) {
+	    meals.createTables(data);
+	  }).catch(foods.logErrors);
+	});
+
+	function deleteMealFoodAjax(meal, food) {
+	  console.log(food);
+	  $.ajax({
+	    method: 'DELETE',
+	    url: "http://localhost:3000/api/v1/meals/" + meal + "/foods/" + food
+	  }).done(meals.clearHouse).catch(foods.logErrors);
+	}
+
+	module.exports = { deleteMealFoodAjax };
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var $ = __webpack_require__(3);
+	var ajaxCalls = __webpack_require__(12);
 
 	$(document).ready(function () {
 	  $('.meal-table').on('click', '.delete-food-btn', function (e) {
@@ -10732,33 +10781,6 @@
 	    ajaxCalls.deleteMealFoodAjax(mealId, foodId);
 	  });
 	});
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	var $ = __webpack_require__(3);
-	var HTMLHelper = __webpack_require__(4);
-
-	$(document).ready(function () {
-	  setTimeout(function () {
-	    calculateCaloriesConsumed();
-	  }, 500);
-	});
-
-	function calculateCaloriesConsumed() {
-	  var sTotal = Number($('#snack-total').text());
-	  var bTotal = Number($('#breakfast-total').text());
-	  var lTotal = Number($('#lunch-total').text());
-	  var dTotal = Number($('#dinner-total').text());
-	  var calTotal = sTotal + bTotal + lTotal + dTotal;
-	  $('#calories-consumed').append(calTotal);
-	  return calculateTotalRemainingCals(calTotal);
-	}
-
-	function calculateTotalRemainingCals(calTotal) {
-	  HTMLHelper.stylizeRemainingCalorie('#remaining-total', calTotal, 2000);
-	}
 
 /***/ })
 /******/ ]);

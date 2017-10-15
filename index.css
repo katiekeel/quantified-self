@@ -141,4 +141,15 @@ thead.meal-header, .meal-foot{
   border-radius: 25px;
   font-weight: bold;
   font-family: "Georgia", serif;
+  margin-bottom: 15px;
+}
+
+.first-row-buttons {
+  display: inline-block;
+}
+
+.second-row-buttons {
+  padding-left: 15px;
+  clear: left;
+  display: inline-block;
 }

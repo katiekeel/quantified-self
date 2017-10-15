@@ -128,3 +128,17 @@ thead.meal-header, .meal-foot{
   text-decoration: underline;
   text-align: left;
 }
+
+.food-meal-add-buttons {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.foods-buttons {
+  height: 40px;
+  min-width: 100px;
+  background-color: #7E8F7C;
+  border-radius: 25px;
+  font-weight: bold;
+  font-family: "Georgia", serif;
+}

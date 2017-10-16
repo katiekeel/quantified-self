@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Quantified Self - Diary</title>
     <link rel="stylesheet" type="text/css" href="index.css">
+    <script src="/sorttable.js"></script>
   </head>
   <body>
     <h1>Main Diary</h1>
@@ -142,10 +143,12 @@
 
         </div>
       </div>
-        <table class="food-table" id='meals-food-table'>
+      <div id="food-table-container">
+        <table class="food-table sortable" id='meals-food-table'>
           <thead>
             <tr class='food-table-headers'>
-              <th class="cell-one food-tbl-name-header">Name</th><th class="food-tbl-cal-header">Calories</th>
+              <th class="cell-one food-tbl-name-header">Name</th>
+              <th class="food-tbl-cal-header">Calories</th>
             </tr>
           </thead>
           <tbody>

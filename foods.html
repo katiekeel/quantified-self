@@ -1,11 +1,54 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>Quantified Self - Manage Foods</title>
-</head>
-<body>
-
-  <script src="main.bundle.js"></script>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <title>Quantified Self - Manage Foods</title>
+    <script src='./lib/foodSearch.js'></script>
+    <link rel="stylesheet" type="text/css" href="foods.css">
+  </head>
+  <body>
+    <div class="third-body-pane">
+    </div>
+    <div>
+      <div class='food-diary-outline'>
+        <h2> Foods </h2>
+        <a href="/index.html"> Meals Diary </a>
+        <div class='food-diary'>
+          <div>
+            <form class="search-foods" method="get" id='search-foods-area'>
+              <input id='search-foods' rows="1" cols="50" placeholder='Filter by Name' oninput='searchFunction();'/>
+            </form>
+          </div>
+          <div class="create-food-form">
+            <h3>Add New Food - *</h3>
+            <form id="add-foods">
+              <div class="first-add-block">
+                <span class='add-foods-block-one'>Name:</span>
+                <input type="text" name="name" id="food-name"><br>
+                <span class='add-foods-block-two'>Calorie Amount:</span>
+                <input type="text" name="calories" id="food-calories">
+              </div>
+              <div class="second-add-block">
+                <input type="submit" value="Add Food" id='food-add-btn'></br>
+              </div>
+            </form>
+          </div>
+          <div class="food-table-div">
+            <table class="food-table" id='food-table'>
+              <thead>
+                <tr class='food-table-headers'>
+                  <th class="cell-one food-tbl-name-header">Name</th><th class="food-tbl-cal-header">Calories</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="first-body-pane">
+      </div>
+    </div>
+    <script src="main.bundle.js"></script>
+  </body>
 </html>

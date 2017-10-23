@@ -10424,16 +10424,16 @@
 	    }
 	  }
 
-	  static createFoodsMealsTable(foodArray, element) {
+	  static createFoodsMealsTable(foodsArray, element) {
 	    foodsArray.forEach(function (food) {
 	      $(element).append(`<tr class='tbl-row'>
-	      <td class='cell-one food-cell' contenteditable='true'>
-	      <span class='replaceme-name' contenteditable='true'>
+	      <td class='cell-one food-cell'>
+	      <span class='replaceme-name'>
 	      ${food.name}
 	      </span>
 	      </td>
 	      <td class='cell-two cal-cell'>
-	      <span class='replaceme-cal' contenteditable='true'>
+	      <span class='replaceme-cal'>
 	      ${food.calories}
 	      </span>
 	      </td>

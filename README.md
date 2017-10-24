@@ -1,6 +1,6 @@
 # Production
 
-Front end: https://katiekeel.github.io/quantified-self/
+Front end: https://katiekeel.github.io/quantified-self/  
 Back end: https://qs-express-api.herokuapp.com/
 
 # Contributing

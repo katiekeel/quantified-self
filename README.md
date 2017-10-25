@@ -9,7 +9,7 @@ Node backend is [here](https://github.com/katiekeel/qs-express-api), Rails backe
 
 Clone either of them into their own directory and run the following for the Express server:  
 
-`$ npm install`
+`$ npm install`  
 `$ npm start`
 
 or just `$ rails s` for the Rails backend app.
@@ -22,9 +22,9 @@ Be sure to clone into the "local" branch as shown above. Cloning into the master
 
 Then, in the frontend directory:
 
-`$ npm install`
-`$ npm run build`
-`$ npm start`
+`$ npm install`  
+`$ npm run build`  
+`$ npm start`  
 
 Navigate to http://localhost:8080 to view the application in action! If you'd like to see your changes as you save without refreshing, use http://localhost:8080/webpack-dev-server.
 

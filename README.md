@@ -5,14 +5,12 @@ Back end: https://qs-express-api.herokuapp.com/
 
 # Contributing
 
-Node backend is [here](https://github.com/katiekeel/qs-express-api), Rails backend is [here](https://github.com/case-eee/quantified-self-api). Use whichever one you like. 
+The backend is [here](https://github.com/katiekeel/qs-express-api).
 
-Clone either of them into their own directory, `$ cd` into that directory, and run the following for the Express server:  
+Clone the backend app into its own directory, `$ cd` into that directory, and run the following to start the server:  
 
 `$ npm install`  
 `$ npm start`
-
-or just `$ rails s` for the Rails backend app.
 
 Then, in a separate directory, clone into the frontend app (i.e. this repo):
 

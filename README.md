@@ -21,7 +21,7 @@ Then, in a separate directory, clone the `-local` branch of the frontend app (i.
 
 `$ git clone -b local git@github.com:katiekeel/quantified-self.git`
 
-Then, `$ cd` into the frontend directory and run `$ npm start`.
+`$ cd` into the frontend directory and run `$ npm start`.
 
 -- -- -- --
 *Be sure to clone into the "local" branch as shown above. Cloning into the master branch will give you the API endpoints for the production app and the calls won't work correctly. Also, `$ npm start` will fail because the script is different for Heroku than it is for your local machine.*  

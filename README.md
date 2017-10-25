@@ -18,7 +18,7 @@ Then, in a separate directory, clone into the frontend app (i.e. this repo):
 
 Be sure to clone into the "local" branch as shown above. Cloning into the master branch will give you the API endpoints for the production app and the calls won't work correctly. Also, `$ npm start` will fail because the script is different for Heroku than it is for your local machine.  
 
-Then, in the frontend directory:
+Then, `$ cd` into the frontend directory and run:
 
 `$ npm install`  
 `$ npm run build`  

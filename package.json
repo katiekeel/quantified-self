@@ -20,8 +20,11 @@
   "homepage": "https://github.com/turingschool-examples/quantified-self-starter-kit#readme",
   "devDependencies": {
     "babel": "^6.5.2",
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.7",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "chai": "^3.5.0",
     "chromedriver": "^2.27.2",
     "css-loader": "^0.26.0",
@@ -40,6 +43,9 @@
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
-    "pryjs": "^1.0.3"
+    "axios": "^0.17.0",
+    "pryjs": "^1.0.3",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   }
 }

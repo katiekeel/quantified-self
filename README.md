@@ -18,13 +18,9 @@ Then, in a separate directory, clone into the frontend app (i.e. this repo):
 
 Be sure to clone into the "local" branch as shown above. Cloning into the master branch will give you the API endpoints for the production app and the calls won't work correctly. Also, `$ npm start` will fail because the script is different for Heroku than it is for your local machine.  
 
-Then, `$ cd` into the frontend directory and run:
+Then, `$ cd` into the frontend directory and run `$ npm start`.
 
-`$ npm install`  
-`$ npm run build`  
-`$ npm start`  
-
-Navigate to http://localhost:8080 to view the application in action! If you'd like to see your changes as you save without refreshing, use http://localhost:8080/webpack-dev-server.
+Navigate to http://localhost:8080 to view the application in action! If you'd like to see your changes as you save without refreshing, use http://localhost:8080/webpack-dev-server. **Note:** If you use webpack-dev-server and click links within the app, your actual URL will not change, so when you refresh the page after clicking it will return you to the previous page.
 
 PRs always welcome! We could use help on:  
 - Test coverage for the backend

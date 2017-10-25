@@ -10490,7 +10490,7 @@
 	$(document).ready(function () {
 	  $.ajax({
 	    type: "get",
-	    url: "https://qs-express-api.herokuapp.com/api/v1/foods/"
+	    url: "http://localhost:3000/api/v1/foods/"
 	  }).done(function (data) {
 	    foods.createFoodsTable(foods.makeFoods(data));
 	  }).catch(foods.logErrors);
@@ -10499,7 +10499,7 @@
 	function postAjax(formattedFood) {
 	  $.ajax({
 	    method: 'POST',
-	    url: 'https://qs-express-api.herokuapp.com/api/v1/foods/',
+	    url: 'http://localhost:3000/api/v1/foods/',
 	    data: formattedFood,
 	    dataType: "json",
 	    success: function addFoodFunction(data) {
@@ -10511,7 +10511,7 @@
 	function editAjax(food) {
 	  $.ajax({
 	    method: 'PATCH',
-	    url: 'https://qs-express-api.herokuapp.com/api/v1/foods/' + food.id,
+	    url: 'http://localhost:3000/api/v1/foods/' + food.id,
 	    data: { food: { name: food.name, calories: food.calories } }
 	  }).done().catch(foods.logErrors);
 	}
@@ -10519,7 +10519,7 @@
 	function deleteAjax(id) {
 	  $.ajax({
 	    method: 'DELETE',
-	    url: "https://qs-express-api.herokuapp.com/api/v1/foods/" + id
+	    url: "http://localhost:3000/api/v1/foods/" + id
 	  }).done().catch(foods.logErrors);
 	}
 
@@ -10692,7 +10692,7 @@
 	$(document).ready(function () {
 	  $.ajax({
 	    type: "get",
-	    url: "https://qs-express-api.herokuapp.com/api/v1/meals"
+	    url: "http://localhost:3000/api/v1/meals"
 	  }).done(function (data) {
 	    meals.createTables(data);
 	  }).catch(foods.logErrors);
@@ -10701,7 +10701,7 @@
 	$(document).ready(function () {
 	  $.ajax({
 	    type: "get",
-	    url: "https://qs-express-api.herokuapp.com/api/v1/foods"
+	    url: "http://localhost:3000/api/v1/foods"
 	  }).done(function (data) {
 	    mealFoods.createAddFoodTable(data);
 	  }).catch(foods.logErrors);
@@ -10710,7 +10710,7 @@
 	function deleteMealFoodAjax(meal, food) {
 	  $.ajax({
 	    method: 'DELETE',
-	    url: "https://qs-express-api.herokuapp.com/api/v1/meals/" + meal + "/foods/" + food
+	    url: "http://localhost:3000/api/v1/meals/" + meal + "/foods/" + food
 	  }).done(meals.clearHouse).catch(foods.logErrors);
 	}
 
@@ -10873,7 +10873,7 @@
 	  foods.forEach(function (food) {
 	    $.ajax({
 	      method: 'POST',
-	      url: "https://qs-express-api.herokuapp.com/api/v1/meals/" + meal.id + "/foods/" + food.id
+	      url: "http://localhost:3000/api/v1/meals/" + meal.id + "/foods/" + food.id
 	    }).done(function (data) {
 	      HTMLHelper.addNewMealFoodToTable(meal, food);
 	      // add method here to clear checkboxes
@@ -10924,7 +10924,7 @@
 	function reloadTable() {
 	  $.ajax({
 	    type: "get",
-	    url: "https://qs-express-api.herokuapp.com/api/v1/foods"
+	    url: "http://localhost:3000/api/v1/foods"
 	  }).done(function (foods) {
 	    // need to completely rebuild table and reset it with sortable class, not just empty rows
 	    $('#meals-food-table').remove();

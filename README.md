@@ -15,6 +15,8 @@ and `$ cd` into it, then run the following to start the server:
 
 `$ npm start`
 
+--
+
 Then, in a separate directory, clone the `-local` branch of the frontend app (i.e. this repo):
 
 `$ git clone -b local git@github.com:katiekeel/quantified-self.git`

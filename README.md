@@ -6,11 +6,13 @@ Back end: https://qs-express-api.herokuapp.com/
 # Contributing
 
 Clone the [backend app](https://github.com/katiekeel/qs-express-api) into its own directory:
+
 `$ git clone git@github.com:katiekeel/qs-express-api.git`,
 
 and `$ cd` into it, then run the following to start the server:  
 
 `$ npm install`  (you must have [Node.js](https://nodejs.org/en/) installed locally)
+
 `$ npm start`
 
 Then, in a separate directory, clone the `-local` branch of the frontend app (i.e. this repo):
